@@ -1,0 +1,29 @@
+.page-root { display:flex; flex-direction:column; height:100vh; background:#F6F2F9; }
+.main-area { flex:0 0 45%; display:flex; flex-direction:row; overflow:hidden; }
+
+.left-toolbar { width:80rpx; background:#fff; display:flex; flex-direction:column; align-items:center; padding:12rpx 0; border-right:1rpx solid #E8DFF0; }
+.tb-item { display:flex; flex-direction:column; align-items:center; padding:12rpx 4rpx; border-radius:12rpx; width:64rpx; }
+.tb-icon { font-size:32rpx; }
+.tb-label { font-size:18rpx; color:#A898B8; margin-top:2rpx; }
+
+.center-preview { flex:1; display:flex; align-items:center; justify-content:center; background:#F6F2F9; }
+.plate-preview { border-radius:12rpx; border:2px dashed #C4B0D6; display:flex; align-items:center; justify-content:center; box-shadow:0 4rpx 16rpx rgba(107,75,133,0.1); }
+.plate-label { font-size:24rpx; color:#fff; font-weight:600; text-shadow:0 1rpx 2rpx rgba(0,0,0,0.2); }
+
+.right-info { width:110rpx; background:#fff; display:flex; flex-direction:column; padding:16rpx 8rpx; gap:12rpx; border-left:1rpx solid #E8DFF0; }
+.ri-row { text-align:center; }
+.ri-label { font-size:20rpx; color:#A898B8; display:block; }
+.ri-val { font-size:24rpx; color:#3D2E4E; font-weight:500; display:block; }
+.ri-val.large { font-size:26rpx; font-weight:600; }
+
+.bottom-materials { flex:1; background:#fff; border-top:1rpx solid #E8DFF0; display:flex; flex-direction:column; min-height:0; }
+.mat-content { flex:1; display:flex; flex-direction:row; min-height:0; }
+
+.color-sidebar { width:120rpx; background:#FAF8FC; padding:12rpx 8rpx; flex-shrink:0; }
+.cs-item { display:flex; align-items:center; gap:8rpx; padding:14rpx 10rpx; border-radius:10rpx; margin-bottom:4rpx; font-size:24rpx; color:#5E3D7A; }
+.cs-item.active { background:#fff; color:#7B5B95; font-weight:600; }
+.cs-dot { width:28rpx; height:28rpx; border-radius:50%; border:2rpx solid rgba(0,0,0,0.06); flex-shrink:0; }
+
+.mat-right { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8rpx; }
+.mat-hint { font-size:28rpx; color:#C4B0D6; }
+.mat-hint-sub { font-size:22rpx; color:#D4C8E0; }

@@ -1,0 +1,29 @@
+<view class="page-wrap">
+  <view class="section-title">🎨 设计广场</view>
+  <view wx:if="{{list.length > 0}}">
+    <view class="sq-item" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="sq-preview" style="background:{{item.previewColor}};">
+        <text>{{item.type === 'bracelet' ? '📿' : '🏷️'}}</text>
+      </view>
+      <view class="sq-info">
+        <text class="sq-name">{{item.name || '未命名设计'}}</text>
+        <text class="sq-desc">{{item.type === 'bracelet' ? (item.beadCount + '颗·手围' + item.size + 'cm·¥' + item.totalPrice) : ((item.materialColor || '未知') + '底·' + (item.designName || '未知'))}}</text>
+      </view>
+      <view class="sq-actions">
+        <view class="sq-action" catchtap="toggleLike" data-id="{{item.id}}">
+          <text class="sq-action-icon">{{item.likes > 0 ? '❤️' : '🤍'}}</text>
+          <text class="sq-action-num">{{item.likes || 0}}</text>
+        </view>
+        <view class="sq-action">
+          <text class="sq-action-icon">💬</text>
+          <text class="sq-action-num">{{item.comments.length || 0}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{list.length === 0}}">
+    <text class="empty-icon">🎨</text>
+    <text>广场还没有作品</text>
+    <text class="text-muted">快去发表你的第一个设计吧 🎉</text>
+  </view>
+</view>

@@ -1,0 +1,64 @@
+<view class="page-wrap">
+
+  <!-- ===== Logo 区 ===== -->
+  <view class="logo-area">
+    <view class="logo-icon">
+      <view class="logo-moon"></view>
+      <view class="logo-crystal"></view>
+      <view class="logo-leaf"></view>
+      <view class="logo-star l1"></view>
+      <view class="logo-star l2"></view>
+      <view class="logo-star l3"></view>
+    </view>
+    <text class="logo-title">独作 · 和田玉DIY</text>
+    <text class="logo-sub">一珠一世界 · 亲手设计你的和田玉</text>
+  </view>
+
+  <!-- ===== 2×2 功能卡片 ==== -->
+  <view class="card-grid">
+    <!-- 开始设计 -->
+    <view class="home-card" bindtap="goBracelet">
+      <view class="card-icon-box icon-design">
+        <text class="icon-emoji">📿</text>
+      </view>
+      <text class="card-title">开始设计</text>
+      <text class="card-desc">搭配你的专属手串</text>
+    </view>
+
+    <!-- 逛逛好物 -->
+    <view class="home-card" bindtap="goBrowse">
+      <view class="card-icon-box icon-browse">
+        <text class="icon-emoji">✨</text>
+      </view>
+      <text class="card-title">逛逛好物</text>
+      <text class="card-desc">精选好物推荐</text>
+    </view>
+
+    <!-- 本命定制 -->
+    <view class="home-card" bindtap="goJade">
+      <view class="card-icon-box icon-destiny">
+        <text class="icon-emoji">🔮</text>
+      </view>
+      <text class="card-title">本命定制</text>
+      <text class="card-desc">选定料子与图样</text>
+    </view>
+
+    <!-- 设计广场 -->
+    <view class="home-card" bindtap="goSquare">
+      <view class="card-icon-box icon-square">
+        <text class="icon-emoji">🎨</text>
+      </view>
+      <text class="card-title">设计广场</text>
+      <text class="card-desc">欣赏他人创意</text>
+    </view>
+  </view>
+
+</view>
+
+<!-- 悬浮客服按钮 -->
+<view class="float-service" bindtap="tapService">
+  <view class="fs-circle">
+    <text class="fs-icon">🎧</text>
+  </view>
+  <text class="fs-label">客服</text>
+</view>

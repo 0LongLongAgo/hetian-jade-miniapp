@@ -1,0 +1,33 @@
+<view class="page-root">
+  <view class="main-area">
+    <view class="left-toolbar">
+      <view class="tb-item" bindtap="confirmMaterial">
+        <text class="tb-icon">✅</text><text class="tb-label">确定</text>
+      </view>
+    </view>
+    <view class="center-preview">
+      <view class="plate-preview" style="background:{{colorMap[jadeMaterial.color] || '#F6F2F9'}};width:{{plateW}}rpx;height:{{plateH}}rpx;">
+        <text class="plate-label">{{jadeMaterial.color || '选择料子'}}</text>
+      </view>
+    </view>
+    <view class="right-info">
+      <view class="ri-row"><text class="ri-label">颜色</text><text class="ri-val">{{jadeMaterial.color || '-'}}</text></view>
+      <view class="ri-row"><text class="ri-label">尺寸</text><text class="ri-val">{{jadeMaterial.lengthMm}}×{{jadeMaterial.widthMm}}×{{jadeMaterial.heightMm}}mm</text></view>
+    </view>
+  </view>
+
+  <view class="bottom-materials">
+    <view class="mat-content">
+      <scroll-view class="color-sidebar" scroll-y="true">
+        <view class="cs-item {{jadeMaterial.color === item ? 'active' : ''}}" wx:for="{{jadeColors}}" wx:key="*this" data-color="{{item}}" bindtap="selectColor">
+          <view class="cs-dot" style="background:{{colorMap[item]}};"></view>
+          <text class="cs-label">{{item}}</text>
+        </view>
+      </scroll-view>
+      <view class="mat-right">
+        <text class="mat-hint">👆 左侧选择料子底色</text>
+        <text class="mat-hint-sub">尺寸参数由后台管理</text>
+      </view>
+    </view>
+  </view>
+</view>

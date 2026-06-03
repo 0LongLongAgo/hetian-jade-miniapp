@@ -1,0 +1,159 @@
+{
+  "_说明": "后台珠子 & 玉牌料子 & 设计图管理配置",
+  "_版本": "3.0",
+
+  "上传配置": {
+    "支持的图片格式": ["png", "jpg", "jpeg", "webp"],
+    "图片最大尺寸": "2MB",
+    "图片建议尺寸": "500x500 像素",
+    "支持的3D格式": ["obj", "gltf", "glb", "stl"],
+    "3D模型最大尺寸": "10MB",
+    "存储方式": "云开发存储（cloud://）或 CDN 直链"
+  },
+
+  "珠子数据模板": {
+    "id": "string (uuid)",
+    "name": "string (admin-chosen name, e.g. '羊脂白·凝脂', '烟紫·星月')",
+    "category": "enum: 主珠 | 配饰 | 三通&吊坠 | 隔片 | 绳子",
+    "colorGroup": "enum: 羊脂白 | 烟紫 | 藕粉 | 湖水绿 | 糖玉 | 青花 | 墨玉 | 碧玉 | 黄口 | 且末蓝",
+    "colorHex": "#7B5B95",
+    "imageUrl": "string (cloud storage URL for display photo)",
+    "model3dUrl": "string (cloud storage URL for .glb / .obj / .stl)",
+    "meaning": "string (寓意 text, admin-written, shown when user taps image)",
+    "description": "string (longer description)",
+    "material": "string (e.g. '和田玉青海料')",
+    "origin": "string (e.g. '青海')",
+    "stock": "integer",
+    "sizes": [
+      {
+        "sizeLabel": "string (e.g. '6mm', '8.5mm')",
+        "price": "number (CNY)",
+        "weight": "number (grams)",
+        "stock": "integer"
+      }
+    ]
+  },
+
+  "料子数据模板": {
+    "id": "string (uuid)",
+    "name": "string (e.g. '烟紫牌料')",
+    "colorGroup": "string (e.g. '烟紫', one of 10 jade color categories)",
+    "colorHex": "#7B5B95",
+    "imageUrl": "string (cloud storage URL for material photo)",
+    "lengthMm": "number (admin-set, 长 in mm, free-text input)",
+    "widthMm": "number (admin-set, 宽 in mm, free-text input)",
+    "heightMm": "number (admin-set, 高/厚 in mm, free-text input)",
+    "shape": "enum: 方形 | 圆形 | 椭圆 | 随形",
+    "material": "string (e.g. '和田玉青海料')",
+    "origin": "string",
+    "price": "number (CNY, base price before design)",
+    "stock": "integer",
+    "isActive": "boolean"
+  },
+
+  "设计图数据模板": {
+    "id": "string (uuid)",
+    "name": "string (e.g. '富春山居')",
+    "category": "string (e.g. '山水' | '龙凤' | '花鸟', admin-extensible)",
+    "imageUrl": "string (design pattern image)",
+    "meaning": "string (寓意, one-line, e.g. '隐居山林，悠然自得')",
+    "description": "string (设计解释, multi-line detailed explanation)",
+    "suitableAudience": "string (适合人群, admin-written, e.g. '喜爱传统文化的收藏者、商务人士、寻求内心宁静的人')",
+    "isActive": "boolean"
+  },
+
+  "首页配置模板": {
+    "homeBannerImageUrl": "string",
+    "homeBannerLink": "string (optional tap target)",
+    "themeColor": "enum: 羊脂白 | 烟紫 | 藕粉 | 湖水绿 | 糖玉 | 青花 | 墨玉 | 碧玉 | 黄口 | 且末蓝",
+    "logoIconType": "string (admin-chosen icon style)"
+  },
+
+  "尺寸自定义说明": {
+    "珠子尺寸": "管理员可在后台为每种珠子自由添加尺寸，格式如 '6mm'、'8.5mm'，不限制尺寸数量，每个尺寸独立定价",
+    "料子尺寸": "管理员为每块料子设置独立的 长x宽x高（mm）。前端使用自由文本输入框（三输入：长/宽/高-厚），不再是固定下拉列表。每个料子品类只有一份模板，具体尺寸由管理员按库存批次设置。"
+  },
+
+  "和田玉十大色系分类": [
+    { "key": "羊脂白", "label": "羊脂白", "color": "#F0ECE8", "说明": "顶级料，油脂光泽纯白" },
+    { "key": "烟紫",   "label": "烟紫",   "color": "#7B5B95", "说明": "帝王紫调，烟霞氤氲" },
+    { "key": "藕粉",   "label": "藕粉",   "color": "#E8C4C4", "说明": "粉嫩淡雅如藕粉" },
+    { "key": "湖水绿", "label": "湖水绿", "color": "#6B8F71", "说明": "如湖水般清澈碧绿" },
+    { "key": "糖玉",   "label": "糖玉",   "color": "#D4B896", "说明": "焦糖色系，温润如蜜糖" },
+    { "key": "青花",   "label": "青花",   "color": "#7B8A9A", "说明": "黑白交融如水墨青花" },
+    { "key": "墨玉",   "label": "墨玉",   "color": "#2D2D2D", "说明": "纯黑如墨，沉稳内敛" },
+    { "key": "碧玉",   "label": "碧玉",   "color": "#4A7A3A", "说明": "碧绿色，如菠菜翠绿" },
+    { "key": "黄口",   "label": "黄口",   "color": "#D4A04A", "说明": "淡黄色系，如初春鹅黄" },
+    { "key": "且末蓝", "label": "且末蓝", "color": "#6B8FA3", "说明": "浅蓝灰色，苍穹之感" }
+  ],
+
+  "示例数据": [
+    {
+      "id": "sample_bead_001",
+      "name": "烟紫·星月",
+      "category": "主珠",
+      "colorGroup": "烟紫",
+      "colorHex": "#7B5B95",
+      "imageUrl": "",
+      "model3dUrl": "",
+      "meaning": "星月交辉，紫气东来",
+      "description": "烟紫色和田玉青海料，冰透水润",
+      "material": "和田玉青海料",
+      "origin": "青海",
+      "stock": 100,
+      "isActive": true,
+      "sizes": [
+        { "sizeLabel": "6mm", "price": 3.00, "weight": 0.5, "stock": 50 },
+        { "sizeLabel": "8mm", "price": 3.80, "weight": 0.8, "stock": 40 },
+        { "sizeLabel": "10mm", "price": 5.20, "weight": 1.2, "stock": 30 },
+        { "sizeLabel": "12mm", "price": 7.00, "weight": 1.7, "stock": 20 }
+      ]
+    },
+    {
+      "id": "sample_bead_002",
+      "name": "羊脂白·凝脂",
+      "category": "主珠",
+      "colorGroup": "羊脂白",
+      "colorHex": "#F5F2EB",
+      "imageUrl": "",
+      "model3dUrl": "",
+      "meaning": "凝脂如玉，温润如初",
+      "description": "顶级羊脂白玉，油润细腻如凝脂",
+      "material": "和田玉青海料",
+      "origin": "青海",
+      "stock": 50,
+      "isActive": true,
+      "sizes": [
+        { "sizeLabel": "8mm", "price": 38.00, "weight": 1.0, "stock": 25 },
+        { "sizeLabel": "10mm", "price": 48.00, "weight": 1.4, "stock": 20 },
+        { "sizeLabel": "12mm", "price": 58.00, "weight": 1.9, "stock": 15 }
+      ]
+    },
+    {
+      "id": "sample_plate_001",
+      "name": "烟紫牌料",
+      "colorGroup": "烟紫",
+      "colorHex": "#7B5B95",
+      "imageUrl": "",
+      "lengthMm": 50,
+      "widthMm": 40,
+      "heightMm": 8,
+      "shape": "方形",
+      "material": "和田玉青海料",
+      "origin": "青海",
+      "price": 280,
+      "stock": 10,
+      "isActive": true
+    },
+    {
+      "id": "sample_design_001",
+      "name": "富春山居",
+      "category": "山水",
+      "imageUrl": "",
+      "meaning": "隐居山林，悠然自得",
+      "description": "以元代黄公望《富春山居图》为灵感，描绘江南山水之秀美。层峦叠嶂间，江水蜿蜒，渔舟唱晚，茅舍隐于松竹之间，尽显文人雅士寄情山水、远离尘嚣的隐逸情怀。",
+      "suitableAudience": "喜爱传统文化的收藏者、商务人士、寻求内心宁静的人",
+      "isActive": true
+    }
+  ]
+}

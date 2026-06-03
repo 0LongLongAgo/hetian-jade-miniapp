@@ -1,0 +1,22 @@
+.page-root {
+  display: flex; flex-direction: column; height: 100vh;
+  background: #1a1a2e;
+}
+.top-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16rpx 24rpx; background: rgba(0,0,0,0.3); color: #fff;
+}
+.back-btn { color: #C4B0D6; font-size: 28rpx; }
+.title { font-size: 32rpx; font-weight: 600; }
+.hint { font-size: 24rpx; color: #A898B8; }
+.gl-canvas { flex: 1; width: 100%; }
+.loading-tip {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  color: #fff; font-size: 28rpx;
+}
+.bottom-info {
+  padding: 20rpx 24rpx; background: rgba(0,0,0,0.3);
+  display: flex; flex-wrap: wrap; gap: 20rpx; color: #fff;
+}
+.bi-item { font-size: 26rpx; }
+.bi-hint { font-size: 22rpx; color: #A898B8; width: 100%; }

@@ -1,0 +1,19 @@
+<view class="modal-mask" wx:if="{{visible}}" catchtap="onCancel">
+  <view class="modal-box" catchtap="noop">
+    <text class="m-title">✨ 为珠子命名</text>
+    <text class="m-desc">请给你的珠子取一个独特的名字</text>
+    <text class="m-info">{{beadInfo}}</text>
+    <input
+      class="m-input"
+      value="{{name}}"
+      placeholder="例如：沧海、木星、初雪…"
+      maxlength="10"
+      bindinput="onInput"
+      bindconfirm="onConfirm"
+    />
+    <view class="m-btns">
+      <button class="btn btn-outline" bindtap="onCancel">取消</button>
+      <button class="btn" bindtap="onConfirm">确定添加 ✓</button>
+    </view>
+  </view>
+</view>

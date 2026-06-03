@@ -1,0 +1,154 @@
+<view class="page-root">
+
+  <!-- 加载状态：骨架屏 -->
+  <view class="skeleton-wrap" wx:if="{{loading}}">
+    <view class="skeleton-img"></view>
+    <view class="skeleton-line" style="width:60%;margin-top:24rpx;"></view>
+    <view class="skeleton-line" style="width:80%;margin-top:16rpx;"></view>
+    <view class="skeleton-line" style="width:40%;margin-top:16rpx;"></view>
+    <view class="skeleton-card"></view>
+    <view class="skeleton-card"></view>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="error-wrap" wx:elif="{{error}}">
+    <view class="empty">
+      <text class="empty-icon">⚠️</text>
+      <text>{{errorMsg || '加载失败'}}</text>
+      <text class="text-muted">请检查网络后重试</text>
+    </view>
+    <button class="btn" bindtap="onRetry" style="margin-top:24rpx;">重新加载</button>
+    <button class="btn btn-outline btn-sm" bindtap="onBack" style="margin-top:16rpx;">返回</button>
+  </view>
+
+  <!-- 正常内容 -->
+  <view class="content-wrap" wx:else>
+    <!-- 大图展示区 -->
+    <view class="hero-section" bindtap="onImageTap">
+      <image
+        wx:if="{{item.image}}"
+        src="{{item.image}}"
+        mode="aspectFit"
+        class="hero-image"
+      ></image>
+      <view wx:else class="hero-placeholder" style="background:linear-gradient(135deg, {{item.colorHex || '#EDE4F4'}} 0%, #F6F2F9 100%);">
+        <text class="hero-emoji">{{type === 'bead' ? '💎' : (type === 'designImage' ? '🏔️' : '🪨')}}</text>
+        <text class="hero-hint">后台上传图片后此处显示预览</text>
+      </view>
+      <view class="hero-overlay"></view>
+    </view>
+
+    <!-- 图片名称 -->
+    <view class="name-row">
+      <text class="item-name">{{item.name}}</text>
+      <view class="cat-tag" wx:if="{{item.category}}">{{item.category}}</view>
+    </view>
+
+    <!-- 寓意/涵义卡片 -->
+    <view class="info-card">
+      <view class="card-header">
+        <text class="card-icon">💎</text>
+        <text class="card-label">寓意</text>
+      </view>
+      <text class="card-text">{{meaning || '暂无寓意说明'}}</text>
+    </view>
+
+    <!-- 详细信息卡片（珠子） -->
+    <view class="info-card" wx:if="{{type === 'bead' && item}}">
+      <view class="card-header">
+        <text class="card-icon">📋</text>
+        <text class="card-label">详细信息</text>
+      </view>
+      <view class="info-grid">
+        <view class="info-grid-item" wx:if="{{item.material}}">
+          <text class="ig-label">材质</text>
+          <text class="ig-val">{{item.material}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.size}}">
+          <text class="ig-label">尺寸</text>
+          <text class="ig-val">{{item.size}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.origin}}">
+          <text class="ig-label">产地</text>
+          <text class="ig-val">{{item.origin}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.price}}">
+          <text class="ig-label">价格</text>
+          <text class="ig-val price">{{item.price}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.color}}">
+          <text class="ig-label">色系</text>
+          <view class="ig-color-row">
+            <view class="ig-color-dot" style="background:{{item.colorHex}};"></view>
+            <text class="ig-val">{{item.color}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 详细信息卡片（料子） -->
+    <view class="info-card" wx:if="{{type === 'material' && item}}">
+      <view class="card-header">
+        <text class="card-icon">📋</text>
+        <text class="card-label">料子详情</text>
+      </view>
+      <view class="info-grid">
+        <view class="info-grid-item" wx:if="{{item.material}}">
+          <text class="ig-label">材质</text>
+          <text class="ig-val">{{item.material}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.size}}">
+          <text class="ig-label">尺寸（长×宽×高）</text>
+          <text class="ig-val">{{item.size}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.shape}}">
+          <text class="ig-label">形状</text>
+          <text class="ig-val">{{item.shape}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.origin}}">
+          <text class="ig-label">产地</text>
+          <text class="ig-val">{{item.origin}}</text>
+        </view>
+        <view class="info-grid-item" wx:if="{{item.price}}">
+          <text class="ig-label">价格</text>
+          <text class="ig-val price">{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 设计解释（设计图） -->
+    <view class="info-card" wx:if="{{type === 'designImage' && item && item.description}}">
+      <view class="card-header">
+        <text class="card-icon">📖</text>
+        <text class="card-label">设计解释</text>
+      </view>
+      <text class="card-text">{{item.description}}</text>
+    </view>
+
+    <!-- 适合人群（设计图） -->
+    <view class="info-card" wx:if="{{type === 'designImage' && item && item.suitableAudience}}">
+      <view class="card-header">
+        <text class="card-icon">👥</text>
+        <text class="card-label">适合人群</text>
+      </view>
+      <text class="card-text">{{item.suitableAudience}}</text>
+    </view>
+
+    <!-- 搭配推荐 -->
+    <view class="info-card">
+      <view class="card-header">
+        <text class="card-icon">✨</text>
+        <text class="card-label">搭配推荐</text>
+      </view>
+      <text class="card-text text-muted-card">使用此{{type === 'bead' ? '珠子' : (type === 'designImage' ? '设计图' : '料子')}}的设计作品即将上线</text>
+    </view>
+  </view>
+
+  <!-- 底部CTA -->
+  <view class="bottom-cta" wx:if="{{!loading && !error && item}}">
+    <button class="cta-btn" bindtap="onStartDesign">
+      使用此{{type === 'bead' ? '珠子' : (type === 'designImage' ? '设计图' : '料子')}}开始设计
+    </button>
+  </view>
+
+</view>

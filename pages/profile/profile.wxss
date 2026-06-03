@@ -1,0 +1,24 @@
+.page-wrap { padding: 0 24rpx; }
+.p-header { text-align: center; padding: 40rpx 0 20rpx; }
+.avatar {
+  width: 100rpx; height: 100rpx; border-radius: 50%;
+  background: linear-gradient(135deg, #F3EDF7, #E4D6EE);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48rpx; margin: 0 auto;
+}
+.nickname { font-size: 36rpx; font-weight: 600; color: #3d2e4e; display: block; margin-top: 16rpx; }
+.stats { font-size: 24rpx; color: #A898B8; display: block; margin-top: 8rpx; }
+.d-item {
+  display: flex; gap: 16rpx; background: #fff; border-radius: 20rpx;
+  padding: 20rpx; align-items: center; margin-bottom: 14rpx;
+  box-shadow: 0 2rpx 12rpx rgba(107,75,133,0.05);
+}
+.d-preview {
+  width: 64rpx; height: 64rpx; border-radius: 14rpx; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 28rpx;
+}
+.d-info { flex: 1; min-width: 0; }
+.d-name { font-size: 28rpx; font-weight: 600; color: #3d2e4e; display: block; }
+.d-desc { font-size: 24rpx; color: #A898B8; display: block; margin-top: 4rpx; }
+.d-date { font-size: 20rpx; color: #C4B0D6; display: block; margin-top: 4rpx; }
+.d-del { flex-shrink: 0; padding: 12rpx; font-size: 28rpx; }

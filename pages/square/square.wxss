@@ -1,0 +1,24 @@
+.page-wrap { padding: 0 24rpx; }
+.sq-item {
+  display: flex; gap: 20rpx; background: #fff; border-radius: 20rpx;
+  padding: 20rpx; align-items: center; margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(94,61,122,0.05);
+}
+.sq-item:active { opacity: 0.85; }
+.sq-preview {
+  width: 80rpx; height: 80rpx; border-radius: 16rpx; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 36rpx;
+}
+.sq-info { flex: 1; min-width: 0; }
+.sq-name { font-size: 28rpx; font-weight: 600; color: #3D2E4E; display: block; }
+.sq-desc { font-size: 24rpx; color: #A898B8; display: block; margin-top: 6rpx; }
+.sq-actions {
+  display: flex; flex-direction: column; gap: 8rpx; align-items: center;
+  flex-shrink: 0; margin-left: 8rpx;
+}
+.sq-action {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 4rpx 8rpx;
+}
+.sq-action-icon { font-size: 28rpx; }
+.sq-action-num { font-size: 20rpx; color: #A898B8; margin-top: 2rpx; }

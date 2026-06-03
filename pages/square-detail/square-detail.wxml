@@ -1,0 +1,85 @@
+<view class="page-wrap" wx:if="{{design}}">
+
+  <!-- 预览大图区 -->
+  <view class="preview-box">
+    <view class="p-frame" style="background:{{design.previewColor}};">
+      <image wx:if="{{design.type === 'jade' && design.resultImageUrl}}" src="{{design.resultImageUrl}}" mode="aspectFit" class="p-img"></image>
+      <image wx:elif="{{design.type === 'jade' && design.designImg}}" src="{{design.designImg}}" mode="aspectFit" class="p-img"></image>
+      <text wx:else class="p-emoji">{{design.type === 'bracelet' ? '📿' : '🏷️'}}</text>
+    </view>
+  </view>
+
+  <!-- 设计信息 -->
+  <view class="info-box card">
+    <text class="d-name">{{design.name || '未命名设计'}}</text>
+    <view class="d-meta">
+      <text wx:if="{{design.type === 'bracelet'}}">{{design.beadCount}}颗珠子 · 手围{{design.size}}cm · ¥{{design.totalPrice}}</text>
+      <text wx:else>{{design.materialColor}}底 · {{design.designName}} · {{design.materialSize}}</text>
+    </view>
+    <text class="d-date" wx:if="{{design.createdAt}}">{{design.createdAt}}</text>
+  </view>
+
+  <!-- 珠子清单（手链设计） -->
+  <view class="beads-list card" wx:if="{{design.type === 'bracelet' && design.beads}}">
+    <text class="section-title">珠子清单</text>
+    <view class="bead-row" wx:for="{{design.beads}}" wx:key="uid">
+      <view class="b-dot" style="background:{{item.color}};"></view>
+      <text class="b-name">{{item.customName || item.name}}</text>
+      <text class="b-size">{{item.size}} · ¥{{item.price}}</text>
+    </view>
+  </view>
+
+  <!-- 寓意信息（玉牌设计） -->
+  <view class="meaning-box card" wx:if="{{design.type === 'jade' && design.designMeaning}}">
+    <text class="section-title">设计寓意</text>
+    <text class="meaning-text">{{design.designMeaning}}</text>
+  </view>
+
+  <!-- 互动栏 -->
+  <view class="action-bar">
+    <view class="ab-item" bindtap="toggleLike">
+      <text class="ab-icon">{{design.likes > 0 ? '❤️' : '🤍'}}</text>
+      <text class="ab-num">{{design.likes || 0}}</text>
+    </view>
+    <view class="ab-item" bindtap="showComment">
+      <text class="ab-icon">💬</text>
+      <text class="ab-num">{{comments.length || 0}}</text>
+    </view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="comments-section">
+    <view class="section-title">评论 ({{comments.length}})</view>
+    <view wx:if="{{comments.length > 0}}">
+      <view class="cmt-item" wx:for="{{comments}}" wx:key="id">
+        <view class="cmt-avatar">🧑</view>
+        <view class="cmt-body">
+          <text class="cmt-name">{{item.userName || '玉友'}}</text>
+          <text class="cmt-text">{{item.text}}</text>
+          <text class="cmt-time">{{item.createdAt}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="cmt-empty">
+      <text>暂无评论，快来第一个评论吧~</text>
+    </view>
+  </view>
+
+</view>
+
+<!-- 加载中 -->
+<view wx:if="{{!design}}" class="loading-wrap">
+  <text>加载中...</text>
+</view>
+
+<!-- 评论输入弹窗 -->
+<view class="modal-mask" wx:if="{{showCommentInput}}" catchtap="cancelComment">
+  <view class="modal-box" catchtap="noop">
+    <text class="modal-title">写评论</text>
+    <textarea class="modal-textarea" value="{{commentText}}" placeholder="分享你的想法..." maxlength="500" bindinput="onCommentInput" auto-height></textarea>
+    <view class="modal-btns">
+      <button class="btn btn-outline" bindtap="cancelComment">取消</button>
+      <button class="btn" bindtap="submitComment">发表 ✓</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="page-root">
+  <view class="top-bar">
+    <text class="back-btn" bindtap="goBack">← 返回设计</text>
+    <text class="title">3D 手链预览</text>
+    <text class="hint">🖐 拖拽旋转查看</text>
+  </view>
+
+  <!-- Canvas 3D 渲染区（支持 OBJ / glTF / STL） -->
+  <canvas
+    type="webgl"
+    id="glCanvas"
+    class="gl-canvas"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+  ></canvas>
+
+  <!-- 加载占位 -->
+  <view class="loading-tip" wx:if="{{!sceneReady}}">
+    <text>3D 预览功能开发中，敬请期待</text>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="bottom-info">
+    <text class="bi-item">珠子: {{beadCount}} 颗</text>
+    <text class="bi-item">手围: {{braceletSize}}cm</text>
+    <text class="bi-item">总价: ¥{{totalPrice}}</text>
+    <text class="bi-hint">支持 OBJ / glTF / STL 格式</text>
+  </view>
+</view>

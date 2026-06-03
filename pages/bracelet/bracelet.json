@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "独作 · 手链设计",
+  "disableScroll": true,
+  "usingComponents": {
+    "name-modal": "/components/name-modal/name-modal"
+  }
+}

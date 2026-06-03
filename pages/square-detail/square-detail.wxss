@@ -1,0 +1,71 @@
+.page-wrap { padding: 0 24rpx 40rpx; min-height: 100vh; }
+
+/* 预览大图 */
+.preview-box {
+  margin: 16rpx 0; text-align: center;
+}
+.p-frame {
+  width: 100%; aspect-ratio: 1;
+  border-radius: 24rpx; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: #F6F2F9;
+  box-shadow: 0 4rpx 24rpx rgba(94,61,122,0.08);
+}
+.p-img { width: 100%; height: 100%; }
+.p-emoji { font-size: 96rpx; opacity: 0.5; }
+
+/* 信息区 */
+.info-box { margin: 16rpx 0; }
+.d-name { font-size: 36rpx; font-weight: 700; color: #3D2E4E; display: block; }
+.d-meta { font-size: 26rpx; color: #7B5B95; margin-top: 10rpx; }
+.d-date { font-size: 22rpx; color: #C4B0D6; display: block; margin-top: 8rpx; }
+
+/* 珠子清单 */
+.beads-list { margin: 16rpx 0; }
+.bead-row {
+  display: flex; align-items: center; gap: 12rpx;
+  padding: 12rpx 0; border-bottom: 1rpx solid #EDE4F4;
+}
+.bead-row:last-child { border-bottom: none; }
+.b-dot { width: 24rpx; height: 24rpx; border-radius: 50%; flex-shrink: 0; }
+.b-name { flex: 1; font-size: 26rpx; color: #3D2E4E; }
+.b-size { font-size: 24rpx; color: #A898B8; }
+
+/* 寓意 */
+.meaning-box { margin: 16rpx 0; }
+.meaning-text { font-size: 26rpx; color: #5E3D7A; line-height: 1.6; display: block; }
+
+/* 互动栏 */
+.action-bar {
+  display: flex; justify-content: center; gap: 60rpx;
+  padding: 20rpx 0; margin: 16rpx 0;
+  background: #fff; border-radius: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(94,61,122,0.05);
+}
+.ab-item {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8rpx 24rpx;
+}
+.ab-icon { font-size: 40rpx; }
+.ab-num { font-size: 24rpx; color: #A898B8; margin-top: 4rpx; font-weight: 600; }
+
+/* 评论区 */
+.comments-section { margin: 16rpx 0; }
+.cmt-item {
+  display: flex; gap: 16rpx; padding: 20rpx 0;
+  border-bottom: 1rpx solid #EDE4F4;
+}
+.cmt-item:last-child { border-bottom: none; }
+.cmt-avatar {
+  width: 64rpx; height: 64rpx; border-radius: 50%;
+  background: linear-gradient(135deg, #F3EDF7, #E4D6EE);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28rpx; flex-shrink: 0;
+}
+.cmt-body { flex: 1; min-width: 0; }
+.cmt-name { font-size: 26rpx; font-weight: 600; color: #5E3D7A; display: block; }
+.cmt-text { font-size: 26rpx; color: #3D2E4E; display: block; margin-top: 6rpx; line-height: 1.5; }
+.cmt-time { font-size: 20rpx; color: #C4B0D6; display: block; margin-top: 6rpx; }
+.cmt-empty { text-align: center; padding: 40rpx; color: #C4B0D6; font-size: 26rpx; }
+
+/* 加载 */
+.loading-wrap { text-align: center; padding: 100rpx; color: #A898B8; }

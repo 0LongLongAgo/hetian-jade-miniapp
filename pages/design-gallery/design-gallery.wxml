@@ -1,0 +1,23 @@
+<view class="page-root">
+  <view class="mat-content">
+    <scroll-view class="cat-sidebar" scroll-y="true">
+      <view class="cs-item {{designCategory === item ? 'active' : ''}}" wx:for="{{designCategories}}" wx:key="*this" data-cat="{{item}}" bindtap="switchCategory">{{item}}</view>
+    </scroll-view>
+
+    <scroll-view class="design-scroll" scroll-y="true">
+      <view class="design-grid">
+        <view class="d-card {{selectedDesign && selectedDesign.id === item.id ? 'selected' : ''}}" wx:for="{{designs}}" wx:key="id" data-design="{{item}}" bindtap="selectDesign">
+          <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" class="d-img"></image>
+          <view wx:else class="d-img-placeholder" style="background:#F6F2F9;">
+            <text class="d-img-emoji">🏔️</text>
+          </view>
+          <view class="d-info">
+            <text class="d-name">{{item.name}}</text>
+            <text class="d-meaning">{{item.meaning}}</text>
+          </view>
+        </view>
+      </view>
+      <button class="btn w-full" style="margin:24rpx 0 40rpx;" disabled="{{!selectedDesign}}" bindtap="startGenerate">{{selectedDesign ? '使用「' + selectedDesign.name + '」生成效果图' : '请选择设计图'}}</button>
+    </scroll-view>
+  </view>
+</view>

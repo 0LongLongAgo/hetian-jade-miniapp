@@ -1,0 +1,26 @@
+<view class="page-wrap">
+  <view class="p-header">
+    <view class="avatar">🧑</view>
+    <text class="nickname">玉友·小雅</text>
+    <text class="stats">已定制 {{designs.length}} 件</text>
+  </view>
+  <view class="section-title">📐 我的设计</view>
+  <view wx:if="{{designs.length > 0}}">
+    <view class="d-item" wx:for="{{designs}}" wx:key="id">
+      <view class="d-preview" style="background:{{item.previewColor}};">
+        <text>{{item.type === 'bracelet' ? '📿' : '🏷️'}}</text>
+      </view>
+      <view class="d-info">
+        <text class="d-name">{{item.name || '未命名'}}</text>
+        <text class="d-desc">{{item.type === 'bracelet' ? (item.beadCount + '颗·¥' + item.totalPrice) : (item.materialColor + '·' + item.designName)}}</text>
+        <text class="d-date">{{item.createdAt}}</text>
+      </view>
+      <view class="d-del" bindtap="deleteDesign" data-id="{{item.id}}">🗑️</view>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{designs.length === 0}}">
+    <text class="empty-icon">📐</text>
+    <text>还没有保存的设计</text>
+    <text class="text-muted">开始创作吧 💎</text>
+  </view>
+</view>

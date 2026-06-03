@@ -1,0 +1,42 @@
+<view class="page-wrap">
+  <view class="section-title">🌊 逛逛好物</view>
+
+  <!-- 分类标签 -->
+  <scroll-view class="browse-tabs" scroll-x="true" enable-flex="true">
+    <view
+      class="b-tab {{categoryIndex === idx ? 'active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="*this"
+      wx:for-index="idx"
+      data-idx="{{idx}}"
+      bindtap="switchCategory"
+    >{{item}}</view>
+  </scroll-view>
+
+  <!-- 精选珠子商品网格 -->
+  <view class="browse-grid" wx:if="{{featuredBeads.length > 0}}">
+    <view class="b-card" wx:for="{{featuredBeads}}" wx:key="id">
+      <view class="bc-img-wrap">
+        <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" class="bc-img"></image>
+        <view wx:else class="bc-img-swatch" style="background:{{item.color}};">
+          <text class="bc-size-tag">{{item.size}}</text>
+        </view>
+      </view>
+      <text class="bc-name">{{item.name}}</text>
+      <text class="bc-cat">{{item.category}} · {{item.origin || '和田玉'}}</text>
+      <text class="bc-price">¥{{item.priceText}}</text>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{featuredBeads.length === 0}}">
+    <text class="empty-icon">✨</text>
+    <text>精选好物即将上架</text>
+    <text class="text-muted">敬请期待 💎</text>
+  </view>
+
+  <!-- 底部CTA -->
+  <view class="browse-cta" bindtap="goBracelet">
+    <text>开始定制你的专属手串 →</text>
+  </view>
+</view>

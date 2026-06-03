@@ -1,0 +1,10 @@
+.m-title { font-size: 34rpx; font-weight: 600; color: #3D2E4E; display: block; }
+.m-desc { font-size: 26rpx; color: #A898B8; display: block; margin-top: 8rpx; }
+.m-info { font-size: 24rpx; color: #C4B0D6; display: block; margin-top: 6rpx; }
+.m-input {
+  width: 100%; padding: 20rpx 24rpx; border-radius: 16rpx;
+  border: 2rpx solid #E8DFF0; font-size: 28rpx; background: #F6F2F9;
+  margin: 20rpx 0; box-sizing: border-box; color: #3D2E4E;
+}
+.m-btns { display: flex; gap: 16rpx; }
+.m-btns .btn { flex: 1; }

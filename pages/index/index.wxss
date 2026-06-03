@@ -1,0 +1,170 @@
+/* === 首页 — 烟紫主题 === */
+.page-wrap {
+  padding: 0 30rpx;
+  padding-bottom: 40rpx;
+  min-height: 100vh;
+}
+
+/* ===== Logo 区 ===== */
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0 20rpx;
+}
+
+.logo-icon {
+  width: 140rpx;
+  height: 140rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+/* 月牙 */
+.logo-moon {
+  position: absolute;
+  top: 10rpx;
+  left: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 4rpx solid var(--purple-dark);
+  box-shadow: 0 0 20rpx rgba(139, 107, 165, 0.25);
+}
+
+/* 水晶（菱形） */
+.logo-crystal {
+  position: absolute;
+  top: 40rpx;
+  right: 15rpx;
+  width: 50rpx;
+  height: 50rpx;
+  background: var(--purple);
+  transform: rotate(45deg);
+  border-radius: 8rpx;
+  opacity: 0.35;
+}
+
+/* 叶子 */
+.logo-leaf {
+  position: absolute;
+  bottom: 5rpx;
+  left: 40rpx;
+  width: 30rpx;
+  height: 50rpx;
+  border-radius: 50% 0 50% 0;
+  border: 3rpx solid var(--purple);
+  transform: rotate(-30deg);
+}
+
+/* 星星 */
+.logo-star {
+  position: absolute;
+  width: 8rpx;
+  height: 8rpx;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.logo-star.l1 { top: 0; right: 30rpx; }
+.logo-star.l2 { bottom: 20rpx; right: 10rpx; }
+.logo-star.l3 { top: 50rpx; left: 5rpx; }
+
+.logo-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--purple-dark);
+  letter-spacing: 2rpx;
+}
+
+.logo-sub {
+  font-size: 24rpx;
+  color: var(--purple-muted);
+  margin-top: 8rpx;
+}
+
+/* ===== 2×2 卡片网格 ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+  margin: 24rpx 0;
+}
+
+.home-card {
+  background: var(--card);
+  border-radius: 24rpx;
+  padding: 32rpx 24rpx;
+  box-shadow: var(--shadow);
+  border: 1rpx solid var(--border);
+  transition: all 0.2s;
+}
+
+.home-card:active {
+  transform: scale(0.96);
+  box-shadow: 0 4rpx 20rpx rgba(94, 61, 122, 0.15);
+  border-color: var(--purple-light);
+}
+
+.card-icon-box {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.icon-design { background: linear-gradient(135deg, #F3EDF7, #E4D6EE); }
+.icon-browse { background: linear-gradient(135deg, #FDF5F0, #FCE8D5); }
+.icon-destiny { background: linear-gradient(135deg, #EEF5F2, #D5E8DD); }
+.icon-square { background: linear-gradient(135deg, #F6F0F9, #EADDF2); }
+
+.icon-emoji { font-size: 36rpx; }
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--purple-dark);
+  display: block;
+}
+
+.card-desc {
+  font-size: 24rpx;
+  color: var(--purple-muted);
+  display: block;
+  margin-top: 8rpx;
+}
+
+/* ===== 悬浮客服按钮 ===== */
+.float-service {
+  position: fixed;
+  bottom: 200rpx;
+  right: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 99;
+}
+
+.fs-circle {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: var(--gradient-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(94, 61, 122, 0.3);
+}
+
+.fs-circle:active { transform: scale(0.92); }
+
+.fs-icon { font-size: 36rpx; }
+
+.fs-label {
+  font-size: 20rpx;
+  color: var(--gold);
+  margin-top: 4rpx;
+  font-weight: 500;
+}

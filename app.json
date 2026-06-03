@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/bracelet/bracelet",
+    "pages/jade-material/jade-material",
+    "pages/design-gallery/design-gallery",
+    "pages/design-detail/design-detail",
+    "pages/jade-result/jade-result",
+    "pages/bracelet-3d/bracelet-3d",
+    "pages/browse/browse",
+    "pages/square/square",
+    "pages/square-detail/square-detail",
+    "pages/profile/profile",
+    "pages/image-detail/image-detail",
+    "pages/admin/admin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F2F9",
+    "navigationBarTitleText": "独作",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F6F2F9"
+  },
+  "tabBar": {
+    "color": "#A898B8",
+    "selectedColor": "#7B5B95",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/browse/browse", "text": "逛逛" },
+      { "pagePath": "pages/square/square", "text": "设计广场" },
+      { "pagePath": "pages/profile/profile", "text": "我的" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

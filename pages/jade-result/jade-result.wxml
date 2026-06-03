@@ -1,0 +1,48 @@
+<view class="page-wrap">
+  <view class="design-top">
+    <text class="r-name">{{jadeCustomName || (selectedDesign && selectedDesign.name) || '未命名'}}</text>
+  </view>
+
+  <view class="preview-box" wx:if="{{selectedDesign}}">
+    <view class="p-frame" style="border-color:{{bgColor}};">
+      <image wx:if="{{jadeResultImageUrl}}" src="{{jadeResultImageUrl}}" mode="aspectFit" class="p-img"></image>
+      <image wx:elif="{{selectedDesign.img}}" src="{{selectedDesign.img}}" mode="aspectFit" class="p-img"></image>
+      <view wx:else class="p-img-placeholder" style="background:{{bgColor}};">
+        <text class="p-img-emoji">🏷️</text>
+      </view>
+      <view class="p-overlay" style="background:{{bgColor}};"></view>
+    </view>
+    <text class="p-label">{{jadeCustomName || selectedDesign.name}} · {{jadeMaterial.color}}底</text>
+    <text class="p-meaning" wx:if="{{selectedDesign.meaning}}">{{selectedDesign.meaning}}</text>
+    <text class="p-size">尺寸: {{jadeMaterial.lengthMm}}x{{jadeMaterial.widthMm}}x{{jadeMaterial.heightMm}}mm | 侧面: {{thickness}}</text>
+  </view>
+
+  <view class="empty-preview" wx:if="{{!selectedDesign}}">
+    <text>无设计图</text>
+  </view>
+
+  <view class="card">
+    <view class="info-row"><text class="lbl">料子：</text><text>{{jadeMaterial.color || '未选'}} · {{jadeMaterial.shape || '方形'}}</text></view>
+    <view class="info-row"><text class="lbl">尺寸(长x宽x高)：</text><text>{{jadeMaterial.lengthMm}}x{{jadeMaterial.widthMm}}x{{jadeMaterial.heightMm}}mm</text></view>
+    <view class="info-row"><text class="lbl">设计图：</text><text>{{selectedDesign.name || '未选'}}</text></view>
+    <view class="info-row"><text class="lbl">侧面圈围：</text><text>{{thickness}}</text></view>
+  </view>
+
+  <view class="toolbar">
+    <button class="btn btn-outline btn-sm" bindtap="renameJade">✏️ 重命名</button>
+    <button class="btn btn-outline btn-sm" bindtap="doPublish">📤 发表</button>
+    <button class="btn btn-outline btn-sm" bindtap="doSave">✅ 完成</button>
+  </view>
+</view>
+
+<!-- 重命名弹窗 -->
+<view class="modal-mask" wx:if="{{showModal}}" catchtap="cancelRename">
+  <view class="modal-box" catchtap="cancelRename">
+    <text class="modal-title">✨ 为玉牌命名</text>
+    <input class="modal-input" value="{{tempName}}" placeholder="为你的玉牌取个名字吧" maxlength="10" bindinput="onInput"/>
+    <view class="modal-btns">
+      <button class="btn btn-outline" bindtap="cancelRename">取消</button>
+      <button class="btn" bindtap="confirmRename">确定 ✓</button>
+    </view>
+  </view>
+</view>

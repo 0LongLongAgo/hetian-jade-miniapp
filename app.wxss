@@ -1,0 +1,133 @@
+/* 独作 · 和田玉DIY — 烟紫主题（Smoke Purple Palette） */
+page {
+  /* === 主色调 — 烟紫 === */
+  --purple: #8B6BA5;
+  --purple-light: #C4B0D6;
+  --purple-bg: #F6F2F9;
+  --purple-dark: #5E3D7A;
+  --purple-text: #3D2E4E;
+  --purple-muted: #A898B8;
+  --purple-accent: #7B5B95;
+  --purple-deep: #4A2D6B;
+
+  /* === 辅助色 === */
+  --gold: #C9A96E;
+  --gold-light: #E8D5B0;
+  --rose: #E8C4C4;
+
+  /* === 语义别名 === */
+  --white: #FFFFFF;
+  --bg: #F6F2F9;
+  --card: #FFFFFF;
+  --text: #3D2E4E;
+  --text-muted: #A898B8;
+  --border: #E8DFF0;
+  --shadow: 0 2rpx 16rpx rgba(94, 61, 122, 0.06);
+
+  /* === 渐变 === */
+  --gradient-hero: linear-gradient(135deg, #7B5B95 0%, #B89AC4 50%, #D4C4E0 100%);
+  --gradient-card: linear-gradient(180deg, #F6F2F9 0%, #EDE4F4 100%);
+  --gradient-btn: linear-gradient(135deg, #8B6BA5 0%, #6B4B85 100%);
+
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 28rpx;
+}
+
+/* === 通用按钮 === */
+.w-full { width: 100%; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 18rpx 36rpx;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  background: var(--gradient-btn);
+  color: #fff;
+  border: none;
+  transition: all 0.2s;
+}
+.btn:active { transform: scale(0.96); opacity: 0.9; }
+.btn-outline {
+  background: transparent;
+  color: var(--purple);
+  border: 2rpx solid var(--purple-light);
+}
+.btn-sm { padding: 10rpx 24rpx; font-size: 24rpx; }
+.btn-gold { background: var(--gold); }
+button[disabled] { opacity: 0.35; }
+
+/* === 卡片 === */
+.card {
+  background: var(--card);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: var(--shadow);
+}
+
+/* === 标题 === */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--purple-dark);
+  margin: 24rpx 0 16rpx;
+}
+
+/* === 标签 === */
+.tag {
+  background: var(--purple-bg);
+  border: 1rpx solid var(--border);
+  padding: 4rpx 20rpx;
+  border-radius: 32rpx;
+  font-size: 22rpx;
+  color: var(--purple);
+}
+
+/* === 顶部导航 === */
+.design-top {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 12rpx 0;
+}
+
+/* === 工具栏 === */
+.toolbar {
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+  padding: 8rpx 0;
+}
+
+/* === 全局空状态 === */
+.empty { text-align: center; padding: 80rpx 40rpx; color: #A898B8; }
+.empty-icon { font-size: 60rpx; display: block; margin-bottom: 16rpx; }
+.text-muted { font-size: 24rpx; color: #C4B0D6; display: block; margin-top: 8rpx; }
+
+/* === 全局弹窗 === */
+.modal-mask {
+  position: fixed; inset: 0; background: rgba(61,46,78,0.45);
+  display: flex; justify-content: center; align-items: center; z-index: 999;
+}
+.modal-box {
+  background: #fff; border-radius: 28rpx; width: 560rpx;
+  padding: 40rpx 32rpx 32rpx;
+}
+.modal-title { font-size: 32rpx; font-weight: 600; color: #3D2E4E; display: block; }
+.modal-input {
+  width: 100%; padding: 20rpx 24rpx; border-radius: 16rpx;
+  border: 2rpx solid #E8DFF0; font-size: 28rpx; background: #F6F2F9;
+  margin: 20rpx 0; box-sizing: border-box; color: #3D2E4E;
+}
+.modal-textarea {
+  width: 100%; min-height: 160rpx; padding: 20rpx 24rpx; border-radius: 16rpx;
+  border: 2rpx solid #E8DFF0; font-size: 28rpx; background: #F6F2F9;
+  margin: 20rpx 0; box-sizing: border-box; color: #3D2E4E;
+}
+.modal-btns { display: flex; gap: 16rpx; }
+.modal-btns .btn { flex: 1; }

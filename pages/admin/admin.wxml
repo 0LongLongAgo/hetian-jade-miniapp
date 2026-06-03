@@ -1,0 +1,256 @@
+<view class="page-root">
+
+  <!-- 管理入口导航 -->
+  <view class="admin-nav">
+    <view
+      class="an-card {{activeTab === item.key ? 'active' : ''}}"
+      wx:for="{{adminTabs}}"
+      wx:key="key"
+      data-tab="{{item.key}}"
+      bindtap="switchTab"
+    >
+      <text class="an-icon">{{item.icon}}</text>
+      <text class="an-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 面板内容 -->
+  <view class="admin-panel">
+
+    <!-- 操作按钮 -->
+    <view class="panel-toolbar">
+      <button class="btn btn-sm" bindtap="createItem">+ 新建</button>
+      <text class="panel-hint" wx:if="{{activeTab !== 'pricing' && activeTab !== 'banners' && activeTab !== '3dmodels'}}">完整CRUD需后端API支持</text>
+    </view>
+
+    <!-- 珠子列表 -->
+    <view class="data-list" wx:if="{{activeTab === 'beads' && !showEditor}}">
+      <view class="empty" wx:if="{{beadList.length === 0}}">
+        <text class="empty-icon">💎</text>
+        <text>暂无珠子数据</text>
+      </view>
+      <view
+        class="dli-item"
+        wx:for="{{beadList}}"
+        wx:key="id"
+      >
+        <view class="dli-color" style="background:{{item.color}};"></view>
+        <view class="dli-info">
+          <text class="dli-name">{{item.name}}</text>
+          <text class="dli-meta">{{item.category}} · {{item.size}} · ¥{{item.price}}</text>
+        </view>
+        <text class="dli-action" data-item="{{item}}" bindtap="editItem">✏️</text>
+      </view>
+      <view class="panel-note">
+        <text>珠子数据的增删改需后端API。当前为只读预览，来源：utils/data.js</text>
+      </view>
+    </view>
+
+    <!-- 料子列表 -->
+    <view class="data-list" wx:if="{{activeTab === 'materials' && !showEditor}}">
+      <view class="empty" wx:if="{{materialList.length === 0}}">
+        <text class="empty-icon">🪨</text>
+        <text>暂无料子数据</text>
+      </view>
+      <view
+        class="dli-item"
+        wx:for="{{materialList}}"
+        wx:key="id"
+      >
+        <view class="dli-color" style="background:{{item.colorHex}};"></view>
+        <view class="dli-info">
+          <text class="dli-name">{{item.name}}</text>
+          <text class="dli-meta">{{item.colorGroup}} · {{item.lengthMm}}×{{item.widthMm}}×{{item.heightMm}}mm</text>
+        </view>
+        <text class="dli-action" data-item="{{item}}" bindtap="editItem">✏️</text>
+      </view>
+      <view class="panel-note">
+        <text>料子数据的增删改需后端API。当前为只读预览。</text>
+      </view>
+    </view>
+
+    <!-- 设计图列表 -->
+    <view class="data-list" wx:if="{{activeTab === 'designs' && !showEditor}}">
+      <view class="empty" wx:if="{{designList.length === 0}}">
+        <text class="empty-icon">🖼️</text>
+        <text>暂无设计图数据</text>
+      </view>
+      <view
+        class="dli-item"
+        wx:for="{{designList}}"
+        wx:key="id"
+      >
+        <view class="dli-color" style="background:var(--purple-bg);">
+          <text>🏔️</text>
+        </view>
+        <view class="dli-info">
+          <text class="dli-name">{{item.name}}</text>
+          <text class="dli-meta">{{item.categoryName}} · {{item.meaning}}</text>
+        </view>
+        <text class="dli-action" data-item="{{item}}" bindtap="editItem">✏️</text>
+      </view>
+      <view class="panel-note">
+        <text>设计图数据的增删改需后端API。当前为只读预览，来源：utils/data.js</text>
+      </view>
+    </view>
+
+    <!-- Banner管理 -->
+    <view class="data-list" wx:if="{{activeTab === 'banners' && !showEditor}}">
+      <view class="empty" wx:if="{{bannerList.length === 0}}">
+        <text class="empty-icon">📷</text>
+        <text>暂无Banner</text>
+        <text class="text-muted">点击右上角新建添加</text>
+      </view>
+      <view
+        class="dli-item"
+        wx:for="{{bannerList}}"
+        wx:key="id"
+      >
+        <view class="dli-img-wrap">
+          <image wx:if="{{item.image}}" src="{{item.image}}" mode="aspectFill" class="dli-img"></image>
+          <view wx:else class="dli-color" style="background:var(--purple-bg);">
+            <text>📷</text>
+          </view>
+        </view>
+        <view class="dli-info">
+          <text class="dli-name">{{item.sortOrder}} - {{item.isActive ? '启用' : '禁用'}}</text>
+          <text class="dli-meta">{{item.link || '无跳转链接'}}</text>
+        </view>
+        <view class="dli-actions">
+          <text class="dli-action" data-item="{{item}}" bindtap="editItem">✏️</text>
+          <text class="dli-action" data-item="{{item}}" bindtap="deleteItem">🗑️</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 价格管理 -->
+    <view class="pricing-panel" wx:if="{{activeTab === 'pricing' && !showEditor}}">
+      <view class="card">
+        <view class="pri-row">
+          <text class="pri-label">珠子单价表</text>
+          <text class="pri-val">按珠子目录设定，后台可调</text>
+        </view>
+        <view class="pri-row">
+          <text class="pri-label">料子基础价格表</text>
+          <text class="pri-val">按料子类型设定</text>
+        </view>
+        <view class="pri-row">
+          <text class="pri-label">设计费用</text>
+          <text class="pri-val">按设计图复杂度</text>
+        </view>
+        <view class="pri-row">
+          <text class="pri-label">手链加工费</text>
+          <text class="pri-val">统一或按颗计费</text>
+        </view>
+      </view>
+      <view class="panel-note">
+        <text>价格管理需后端API支持。当前为规划占位。</text>
+      </view>
+    </view>
+
+    <!-- 3D模型管理 -->
+    <view class="data-list" wx:if="{{activeTab === '3dmodels' && !showEditor}}">
+      <view class="empty" wx:if="{{model3dList.length === 0}}">
+        <text class="empty-icon">📦</text>
+        <text>暂无3D模型</text>
+        <text class="text-muted">点击右上角新建上传</text>
+      </view>
+      <view
+        class="dli-item"
+        wx:for="{{model3dList}}"
+        wx:key="id"
+      >
+        <view class="dli-color" style="background:var(--purple-bg);">
+          <text>📦</text>
+        </view>
+        <view class="dli-info">
+          <text class="dli-name">{{item.name}}</text>
+          <text class="dli-meta">关联珠子: {{item.beadId || '未关联'}}</text>
+        </view>
+        <view class="dli-actions">
+          <text class="dli-action" data-item="{{item}}" bindtap="editItem">✏️</text>
+          <text class="dli-action" data-item="{{item}}" bindtap="deleteItem">🗑️</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 编辑表单弹窗 -->
+  <view class="modal-mask" wx:if="{{showEditor}}" catchtap="cancelEditor">
+    <view class="editor-box" catchtap="noop">
+      <text class="modal-title">{{isNewItem ? '新建' : '编辑'}}{{editorType === 'beads' ? '珠子' : editorType === 'materials' ? '料子' : editorType === 'designs' ? '设计图' : editorType === 'banners' ? 'Banner' : editorType === '3dmodels' ? '3D模型' : '价格'}}</text>
+
+      <scroll-view class="editor-form" scroll-y="true">
+
+        <!-- 通用：名称 -->
+        <view class="ef-row" wx:if="{{editorType !== 'pricing'}}">
+          <text class="ef-label">名称</text>
+          <input class="ef-input" value="{{editorData.name}}" data-field="name" bindinput="onEditorFieldChange" placeholder="输入名称"/>
+        </view>
+
+        <!-- 珠子专用 -->
+        <block wx:if="{{editorType === 'beads'}}">
+          <view class="ef-row"><text class="ef-label">尺寸</text><input class="ef-input" value="{{editorData.size}}" data-field="size" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">价格</text><input class="ef-input" type="digit" value="{{editorData.price}}" data-field="price" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">色系</text><input class="ef-input" value="{{editorData.colorGroup}}" data-field="colorGroup" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">分类</text><input class="ef-input" value="{{editorData.category}}" data-field="category" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">寓意</text><input class="ef-input" value="{{editorData.meaning}}" data-field="meaning" bindinput="onEditorFieldChange"/></view>
+          <button class="btn btn-outline btn-sm" style="margin-top:16rpx;" bindtap="uploadImage">📷 上传图片</button>
+        </block>
+
+        <!-- 料子专用 -->
+        <block wx:if="{{editorType === 'materials'}}">
+          <view class="ef-row"><text class="ef-label">长(mm)</text><input class="ef-input" type="digit" value="{{editorData.lengthMm}}" data-field="lengthMm" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">宽(mm)</text><input class="ef-input" type="digit" value="{{editorData.widthMm}}" data-field="widthMm" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">高(mm)</text><input class="ef-input" type="digit" value="{{editorData.heightMm}}" data-field="heightMm" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">价格</text><input class="ef-input" type="digit" value="{{editorData.price}}" data-field="price" bindinput="onEditorFieldChange"/></view>
+          <button class="btn btn-outline btn-sm" style="margin-top:16rpx;" bindtap="uploadImage">📷 上传图片</button>
+        </block>
+
+        <!-- 设计图专用 -->
+        <block wx:if="{{editorType === 'designs'}}">
+          <view class="ef-row"><text class="ef-label">分类</text><input class="ef-input" value="{{editorData.categoryName}}" data-field="categoryName" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">寓意</text><input class="ef-input" value="{{editorData.meaning}}" data-field="meaning" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">设计解释</text><textarea class="ef-textarea" value="{{editorData.description}}" data-field="description" bindinput="onEditorFieldChange" placeholder="输入设计解释"/></view>
+          <view class="ef-row"><text class="ef-label">适合人群</text><input class="ef-input" value="{{editorData.suitableAudience}}" data-field="suitableAudience" bindinput="onEditorFieldChange"/></view>
+          <button class="btn btn-outline btn-sm" style="margin-top:16rpx;" bindtap="uploadImage">📷 上传图片</button>
+        </block>
+
+        <!-- Banner专用 -->
+        <block wx:if="{{editorType === 'banners'}}">
+          <view class="ef-row"><text class="ef-label">排序</text><input class="ef-input" type="number" value="{{editorData.sortOrder}}" data-field="sortOrder" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">跳转链接</text><input class="ef-input" value="{{editorData.link}}" data-field="link" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row" style="align-items:center;">
+            <text class="ef-label">启用</text>
+            <switch checked="{{editorData.isActive}}" data-field="isActive" bindchange="onEditorSwitchChange"/>
+          </view>
+          <button class="btn btn-outline btn-sm" style="margin-top:16rpx;" bindtap="uploadImage">📷 上传图片</button>
+        </block>
+
+        <!-- 3D模型专用 -->
+        <block wx:if="{{editorType === '3dmodels'}}">
+          <view class="ef-row"><text class="ef-label">关联珠子ID</text><input class="ef-input" value="{{editorData.beadId}}" data-field="beadId" bindinput="onEditorFieldChange"/></view>
+          <button class="btn btn-outline btn-sm" style="margin-top:16rpx;" bindtap="uploadImage">📷 上传预览图</button>
+          <button class="btn btn-outline btn-sm" style="margin-top:12rpx;" bindtap="uploadModel">📦 上传3D模型</button>
+          <text class="ef-hint" wx:if="{{editorData.modelFileName}}">已选文件: {{editorData.modelFileName}}</text>
+        </block>
+
+        <!-- 价格专用 -->
+        <block wx:if="{{editorType === 'pricing'}}">
+          <view class="ef-row"><text class="ef-label">珠子基础价</text><input class="ef-input" type="digit" value="{{editorData.beadBasePrice}}" data-field="beadBasePrice" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">料子基础价</text><input class="ef-input" type="digit" value="{{editorData.materialBasePrice}}" data-field="materialBasePrice" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">设计费</text><input class="ef-input" type="digit" value="{{editorData.designFee}}" data-field="designFee" bindinput="onEditorFieldChange"/></view>
+          <view class="ef-row"><text class="ef-label">加工费</text><input class="ef-input" type="digit" value="{{editorData.processingFee}}" data-field="processingFee" bindinput="onEditorFieldChange"/></view>
+        </block>
+
+      </scroll-view>
+
+      <view class="modal-btns" style="margin-top:20rpx;">
+        <button class="btn btn-outline" bindtap="cancelEditor">取消</button>
+        <button class="btn" bindtap="saveItem">保存 ✓</button>
+      </view>
+    </view>
+  </view>
+
+</view>
