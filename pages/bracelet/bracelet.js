@@ -1,5 +1,6 @@
 const util = require('../../utils/data.js');
 const BraceletRenderer = require('./bracelet-canvas.js');
+const MockBeadImageGenerator = require('./mock-bead-image.js');
 const app = getApp();
 
 Page({
@@ -23,7 +24,9 @@ Page({
     canvasReady: false,
     isRotating: false,
     touchStartX: 0,
-    touchStartTime: 0
+    touchStartTime: 0,
+    selectedBeadPreview: null,
+    showBeadPreview: false
   },
 
   onShow() {
@@ -42,6 +45,7 @@ Page({
 
   onReady() {
     this._initCanvas();
+    this.beadImageGenerator = new MockBeadImageGenerator();
   },
 
   onUnload() {
@@ -199,6 +203,35 @@ Page({
   switchColorGroup(e) {
     this.setData({ currentColorGroup: e.currentTarget.dataset.key });
     this._filterMaterials();
+  },
+
+  /**
+   * 点击珠子一简介 - 暗示预览
+   */
+  onBeadQuickPreview(e) {
+    const bead = e.currentTarget.dataset.bead;
+    this.setData({
+      selectedBeadPreview: bead,
+      showBeadPreview: true
+    });
+    
+    // 等待DOM渲柒完成后绘制珠子图片
+    setTimeout(() => {
+      if (this.beadImageGenerator) {
+        const canvasId = `previewBeadCanvas_${bead.id}`;
+        this.beadImageGenerator.generateBeadImage(canvasId, bead.color, 120);
+      }
+    }, 100);
+  },
+
+  /**
+   * 关闭珠子预览
+   */
+  closeBeadPreview() {
+    this.setData({
+      showBeadPreview: false,
+      selectedBeadPreview: null
+    });
   },
 
   onBeadClick(e) {

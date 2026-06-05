@@ -74,10 +74,9 @@
 
       <scroll-view class="mat-grid-scroll" scroll-y="true">
         <view class="mat-grid">
-          <view class="mat-card" wx:for="{{filteredMaterials}}" wx:key="id" data-bead="{{item}}" bindtap="onBeadClick">
+          <view class="mat-card" wx:for="{{filteredMaterials}}" wx:key="id" data-bead="{{item}}" bindtap="onBeadClick" bindlongpress="onBeadQuickPreview">
             <view class="mc-img-wrap">
-              <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" class="mc-img-img"></image>
-              <view wx:else class="mc-img" style="background:{{item.color}};"><text class="mc-size-tag">{{item.size}}</text></view>
+              <view class="mc-img" style="background:{{item.color}};"><text class="mc-size-tag">{{item.size}}</text></view>
             </view>
             <text class="mc-name">{{item.name}}</text>
             <text class="mc-price">¥{{item.priceText}}</text>
@@ -86,6 +85,47 @@
         </view>
         <view class="empty" wx:if="{{filteredMaterials.length === 0}}"><text>暂无该分类珠子</text></view>
       </scroll-view>
+    </view>
+  </view>
+</view>
+
+<!-- 珠子预览Modal -->
+<view class="bead-preview-modal" wx:if="{{showBeadPreview}}" bindtap="closeBeadPreview">
+  <view class="bpm-content" catchcatchtap>
+    <view class="bpm-header">
+      <text class="bpm-title">{{selectedBeadPreview.name}}</text>
+      <text class="bpm-close" bindtap="closeBeadPreview">×</text>
+    </view>
+    
+    <view class="bpm-canvas-container">
+      <canvas class="bpm-canvas" id="previewBeadCanvas_{{selectedBeadPreview.id}}" type="2d"></canvas>
+    </view>
+    
+    <view class="bpm-details">
+      <view class="bpd-row">
+        <text class="bpd-label">磨珠尺寸:</text>
+        <text class="bpd-value">{{selectedBeadPreview.size}}</text>
+      </view>
+      <view class="bpd-row">
+        <text class="bpd-label">单位价格:</text>
+        <text class="bpd-value price">¥{{selectedBeadPreview.priceText}}</text>
+      </view>
+      <view class="bpd-row">
+        <text class="bpd-label">克重:</text>
+        <text class="bpd-value">{{selectedBeadPreview.weight}}g</text>
+      </view>
+      <view class="bpd-row">
+        <text class="bpd-label">颜色群:</text>
+        <text class="bpd-value">{{selectedBeadPreview.colorGroup}}</text>
+      </view>
+      <view class="bpd-row" wx:if="{{selectedBeadPreview.meaning}}">
+        <text class="bpd-label">寶意:</text>
+        <text class="bpd-meaning">{{selectedBeadPreview.meaning}}</text>
+      </view>
+    </view>
+    
+    <view class="bpm-action">
+      <view class="bpa-btn" bindtap="onBeadClick" data-bead="{{selectedBeadPreview}}">+ 添加到手串</view>
     </view>
   </view>
 </view>

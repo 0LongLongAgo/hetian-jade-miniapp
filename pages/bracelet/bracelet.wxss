@@ -347,13 +347,6 @@
   border: 2rpx solid rgba(0,0,0,0.05);
 }
 
-.mc-img-img {
-  width: 88rpx;
-  height: 88rpx;
-  border-radius: 50%;
-  border: 2rpx solid rgba(0,0,0,0.05);
-}
-
 .mc-size-tag {
   font-size: 18rpx;
   color: rgba(255,255,255,0.9);
@@ -377,7 +370,7 @@
 
 .mc-size-badge {
   display: inline-block;
-  margin-top: 6rpx;
+  margin-top: u6rpx;
   background: #F6F2F9;
   color: #7B5B95;
   font-size: 20rpx;
@@ -390,4 +383,129 @@
   padding: 40rpx 20rpx;
   color: #A898B8;
   font-size: 26rpx;
+}
+
+/* ===== 珠子预览Modal ===== */
+.bead-preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.bpm-content {
+  background: #fff;
+  border-radius: 24rpx;
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10rpx 40rpx rgba(0, 0, 0, 0.2);
+}
+
+.bpm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.bpm-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #3D2E4E;
+}
+
+.bpm-close {
+  font-size: 48rpx;
+  color: #A898B8;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 8rpx;
+}
+
+.bpm-canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 20rpx;
+  background: linear-gradient(135deg, #F6F2F9 0%, #F5F0EB 100%);
+  flex-shrink: 0;
+}
+
+.bpm-canvas {
+  width: 200px;
+  height: 200px;
+  border-radius: 12rpx;
+}
+
+.bpm-details {
+  flex: 1;
+  padding: 24rpx;
+  overflow-y: auto;
+}
+
+.bpd-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.bpd-label {
+  font-size: 22rpx;
+  color: #A898B8;
+  font-weight: 500;
+}
+
+.bpd-value {
+  font-size: 22rpx;
+  color: #3D2E4E;
+  font-weight: 600;
+}
+
+.bpd-value.price {
+  color: #e65100;
+  font-weight: 700;
+}
+
+.bpd-meaning {
+  font-size: 20rpx;
+  color: #7B5B95;
+  line-height: 1.5;
+}
+
+.bpm-action {
+  padding: 16rpx 24rpx;
+  border-top: 1rpx solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.bpa-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #7B5B95 0%, #9B7BB5 100%);
+  color: #fff;
+  border: none;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.bpa-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 12rpx rgba(123, 91, 149, 0.3);
 }
