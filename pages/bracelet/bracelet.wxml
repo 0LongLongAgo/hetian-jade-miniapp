@@ -17,43 +17,34 @@
       </view>
     </view>
 
-    <!-- 中间预览区 — 纯WXML渲染 -->
-    <view class="center-preview" style="background:{{bgIndex % 3 === 0 ? '#F6F2F9' : (bgIndex % 3 === 1 ? '#FFFFFF' : '#F5F0EB')}};">
+    <!-- 中间预览区 — Canvas 渲染 -->
+    <view class="center-preview" style="background:{{bgIndex % 3 === 0 ? '#F6F2F9' : (bgIndex % 3 === 1 ? '#FFFFFF' : '#F5F0EB')}}">
       <view class="bg-toggle" bindtap="toggleBg">
         <text class="bg-icon">🖼</text><text class="bg-label">背景</text>
       </view>
 
-      <!-- 手串轮廓圆 -->
-      <view class="bracelet-ring"></view>
+      <!-- Canvas 手串渲染 -->
+      <canvas class="bracelet-canvas" id="braceletCanvas" type="2d" bindtouchstart="onCanvasTouchStart" bindtouchend="onCanvasTouchEnd"></canvas>
 
-      <!-- 珠子 — WXML绝对定位 -->
-      <view class="beads-layer" wx:if="{{beadViews.length > 0}}">
-        <view
-          class="b-bead"
-          wx:for="{{beadViews}}"
-          wx:key="uid"
-          style="left:{{item.x}}px;top:{{item.y}}px;width:{{item.r*2}}px;height:{{item.r*2}}px;"
-        >
-          <view class="b-circle" style="background:{{item.color}};width:{{item.r*2}}px;height:{{item.r*2}}px;">
-            <text class="b-size">{{item.size}}</text>
-          </view>
-          <text class="b-label">{{item.label}}</text>
+      <!-- 旋转和导出按钮 -->
+      <view class="preview-actions" wx:if="{{beads.length > 0}}">
+        <view class="pa-btn rotate" bindtap="onRotateClick" wx:if="{{!isRotating}}">
+          <text>🔄 旋转</text>
+        </view>
+        <view class="pa-btn rotate rotating" wx:else>
+          <text>⏳ 旋转中...</text>
+        </view>
+        <view class="pa-btn export" bindtap="onExport">
+          <text>📸 导出</text>
+        </view>
+        <view class="pa-btn finish" bindtap="finishDesign">
+          <text>完成设计 ✨</text>
         </view>
       </view>
 
-      <!-- 空状态 -->
-      <view class="canvas-placeholder" wx:if="{{beadViews.length === 0}}">
-        <text class="ph-icon">📿</text>
-      </view>
-
       <!-- 长度不足 -->
-      <view class="length-warning" wx:if="{{beadViews.length > 0 && totalLengthNum < braceletSizeNum}}">
+      <view class="length-warning" wx:if="{{beads.length > 0 && totalLengthNum < braceletSizeNum}}">
         <text>⚠️ 长度不足，请继续添加珠子~</text>
-      </view>
-
-      <!-- 完成按钮 -->
-      <view class="preview-actions" wx:if="{{beadViews.length > 0}}">
-        <view class="pa-btn finish" bindtap="finishDesign"><text>完成设计 ✨</text></view>
       </view>
     </view>
 
